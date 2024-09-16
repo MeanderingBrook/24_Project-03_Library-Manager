@@ -4,3 +4,19 @@ package-lock.json
 .env
 node_modules/
 .vscode/
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
