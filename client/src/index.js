@@ -1,13 +1,68 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// Module 24 - Project 3: Library Manager Application
+// React App (Frontend) Definition
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Initialize Client from /client
+// Note: Initializes /client/src/index.js
+// App is passed from App.js to index.js (See, root.render(), below)
+// React Scripts: npm run start
+
+// Imports required React Modules
+import React from "react";
+// Imports React-specific (browser) Router Modules
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+
+// Imports required App Modules
+// Imports App used as wrapper for Child Elements (See router, below)
+import App from "./App";
+import ErrorPage from "./error-page";
+import Contact from "./components/contact";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+
+// Import Pages and Components Files used in React Routes, immediately below
+import Dashboard from "./pages/Dashboard";
+import Calendar from "./components/Calendar";
+import ContentForm from "./components/ContentForm";
+
+// Defines React Routes and Components rendered in each Route
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        // Defines Dashboard Route as Root (Home): 'index: true' feferences Root Path above, 'path: "/"'
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        // Defines Calendar Route
+        path: "/calendar",
+        element: <Calendar />,
+      },
+      {
+        // Defines Content Form Route
+        path: "/contentform",
+        element: <ContentForm />,
+      },
+      {
+        path: "/contacts",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
+
+// Defines Root for DOM Management
+// 'root' ID located in /public/index.html (Skeleton HTML file actually rendered)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// Renders materials included in Root
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
