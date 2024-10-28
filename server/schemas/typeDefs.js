@@ -6,20 +6,39 @@ const typeDefs = `
         author: String
         descr: String
         genre: String
-        copiesHeld: Number
-        copiesAvail: Number
+        copiesHeld: Int
+        copiesAvail: Int
         status: String
-        dateCreated: Date
+     }
+
+     type User {
+      _id: ID
+      userName: String
+      password: String
+      content: [Content]!
+     }
+
+     type Authorization {
+      token: ID!
+      user: User
      }
 
      type Query {
-        allContent: [Content]  
-        getSingle(contentId: ID): Content
+        getAllContent: [Content]  
+        getSingle(contentId: ID): [Content]
+        getAvailable(contentStatus: String): [Content]
+        getByStatus(contentStatus: String): [Content]
+        getByGenre(contentGenre: String): [Content]
+        getByTitle(contentTitle: String): [Content]
+        getByAuthor(contentAuthor: String): [Content]
+        getAllUsers: [User]
+        getUser(userName: String!): User
      }
 
-   //   type Mutation {
-     
-   //   }
+     type Mutation {
+      newUser(userName: String!, password: String!): Authorization
+      login(userName: String!, password: String!): Authorization
+     }
 `;
 
 module.exports = typeDefs;

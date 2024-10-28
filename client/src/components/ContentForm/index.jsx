@@ -37,7 +37,7 @@ export default function ContentForm() {
     alert(`The entered Title is, ${values.title}, and the entered Author is, ${values.author}.`)
     console.log("index.jsx Line 38", values);
 
-    // const { title, author, desc, genre, copiesHeld, copiesAvail, status } = values;
+    // const { title, author, descr, genre, copiesHeld, copiesAvail, status } = values;
     const res = await fetch("/contentform", {method: "POST", body: JSON.stringify(values), headers: {"Content-Type": "application/json"}})
     const data = await res.json();
     console.log("index.jsx Line 43", data);
