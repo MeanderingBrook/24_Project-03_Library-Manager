@@ -10,13 +10,13 @@ export default function Nav() {
     { to: '/', label: 'Home' },
     { to: 'contentform', label: 'Content Form' },
     { to: 'calendar', label: 'Calendar' },
+    { to: 'search', label: 'Search' },
+    { to: 'login', label: 'Login' },
+    { to: 'createaccount', label: 'Create Account' },
   ];
 
   return (
     <nav>
-      {/* <ul>
-        {links.map((link) => link)}
-      </ul> */}
       <ul>
         {links.map((link, index) => (
           <li key={index}>
@@ -25,24 +25,5 @@ export default function Nav() {
         ))}
       </ul>
     </nav>
-  );
-  
+  ); 
 }
-
-// export default function Nav() {
-//   return (
-//     <NavBar
-//       links={[
-//         <Link key={1} to={`/`}>
-//           Home
-//         </Link>,
-//         <Link key={2} to={`contentform`}>
-//           Content Form
-//         </Link>,
-//         <Link key={3} to={`calendar`}>
-//           Calendar
-//         </Link>
-//       ]}
-//     />
-//   );
-// }

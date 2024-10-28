@@ -71,5 +71,6 @@ export default function Dashboard() {
       <DashboardTable showPosts={showPosts} posts={posts} handleApprove={handleApprove} handleEdit={handleEdit} />
       <DashboardPosts posts={posts} />
     </div>
+    
   );
 }

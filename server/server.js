@@ -11,21 +11,18 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 
-// Imports Apollo Server Middleware
-// import { ApolloServer } from "@apollo/server";
-// import { expressMiddleware } from "@apollo/server/express4";
-
-// Imports GraphQL Schema
-const { typeDefs, resolvers } = require("./schemas");
-
 // Imports MongoDB Connection from Configuration file (./config/connect.js)
 const db = require("./config/connect");
 
-// Defines Apollo Server to respond to GraphQL Queries
-// const apolloServer = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-// });
+// Imports Apollo Server Middleware
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
+
+// Imports GraphQL Schema
+const { typeDefs, resolvers } = require("./schemas/index.js");
+
+// Import Authentication Middleware, JSON Web Token (JWT)
+const { authMiddleware } = require("./utils/authorize.js");
 
 // Executes Express Function to Create Application Object (app) using Express Framework
 const app = express();
@@ -46,19 +43,6 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "/client/build")));
 
-// GraphQL Entry Point
-// app.use(
-//   "/graphql",
-//   cors(),
-//   express.json,
-//   expressMiddleware(server, {
-//     context: async ({ req, res }) => ({
-//       req: request,
-//       res: express.response,
-//     }),
-//   })
-// );
-
 // Establishes connection to local MongoDB Instance through Configuration file (./config/connect.js)
 db.on(
   "error",
@@ -71,35 +55,38 @@ db.once("open", () => {
   console.log("server.js Line 42: Connection established to MongoDB Instance");
 });
 
-// const startApolloServer = async () => {
-//   await apolloServer.start();
+// // GET Request of MongoDB Library Data
+// // Note: GET Request to Root ("/") rather than sub-Route ("/cms")
+// app.get("/", async (req, res) => {
+//   try {
+//     const libraryData = await Content.find({});
+//     // console.log("server.js Line 50: Content Data:", libraryData);
 
-//   app.use(
-//     "/graphql",
-//     expressMiddleware(apolloServer)
-//     // cors(),
-//     // express.urlencoded({ extended: false }),
-//     // express.json(),
-//   );
-// };
+//     res.json(libraryData);
+//   } catch (err) {
+//     console.log(err);
+//     res.json(err);
+//   }
+// });
 
-// GET Request of MongoDB Library Data
-// Note: GET Request at Root ("/") rather than sub-Route ("/cms")
-app.get("/", async (req, res) => {
+// FIX THIS !!!
+// GET Request of MongoDB Content Data
+// Referenced by Dashboard.js to populate Dashboard with MongoDB Data
+app.get("/cms", async (req, res) => {
   try {
-    const libraryData = await Content.find({});
-    // console.log("server.js Line 50: Content Data:", libraryData);
+    const data = await Content.find({});
+    // console.log("server.js Line 88", data);
 
-    res.json(libraryData);
+    res.json(data);
   } catch (err) {
-    console.log(err);
-    res.json(err);
+    console.log("server.js Line 97: CMS Data Return Failed.");
+    res.json({ message: "server.js Line 98: CMS Data Return Failed." });
   }
 });
 
 // POST Request to MongoDB Content Data
 app.post("/contentform", async (req, res) => {
-  console.log("server.js Line 61", req.body);
+  // console.log("server.js Line 61", req.body);
   // Deconstructs the Incoming New Content POST Request Body
   let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
     req.body;
@@ -114,25 +101,11 @@ app.post("/contentform", async (req, res) => {
       copiesAvail,
       status,
     });
-    console.log("server.js Line 87", newContent);
+    // console.log("server.js Line 87", newContent);
     res.json(newContent);
   } catch (err) {
     console.log("server.js Line 90, newContent POST Request failed.");
     res.json(err);
-  }
-});
-
-// FIX THIS -- WHY IS IT POINTING TO /cms ??? !!!
-// GET Request of MongoDB Content Data
-app.get("/cms", async (req, res) => {
-  try {
-    const data = await Content.find({});
-    // console.log("server.js Line 88", data);
-
-    res.json(data);
-  } catch (err) {
-    console.log("server.js Line 97: CMS Data Return Failed.");
-    res.json({ message: "server.js Line 98: CMS Data Return Failed." });
   }
 });
 
@@ -198,8 +171,35 @@ app.get("/cms", async (req, res) => {
 //   );
 // });
 
+// Defines Apollo Server to respond to GraphQL Queries
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+// GraphQL Entry Point through Apollo Server
+const startApolloServer = async () => {
+  await server.start();
+
+  app.use(
+    "/graphql",
+    expressMiddleware(server, {
+      context: authMiddleware,
+    })
+    // expressMiddleware(server, {
+    // context: async ({ req, res }) => ({
+    //   req: request,
+    //   res: express.response,
+    //   }),
+    // })
+    // cors(),
+    // express.urlencoded({ extended: false }),
+    // express.json(),
+  );
+};
+
 // Starts Apollo Server
-// startApolloServer();
+startApolloServer();
 
 app.listen(PORT, () => {
   console.log(

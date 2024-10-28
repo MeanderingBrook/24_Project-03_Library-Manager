@@ -22,10 +22,14 @@ import reportWebVitals from "./reportWebVitals";
 
 // Import Pages and Components Files used in React Routes, immediately below
 import Dashboard from "./pages/Dashboard";
+import Search from "./pages/Search";
 import Calendar from "./components/Calendar";
 import ContentForm from "./components/ContentForm";
+import Login from "./pages/Login";
+import CreateAccount from "./pages/CreateAccount";
 
 // Defines React Routes and Components rendered in each Route
+// Defines output rendered through 'Outlet' based on React Route enpoint (e.g., '/', '/calendar')
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +54,18 @@ const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contact />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+      {
+        path: "/createaccount",
+        element: <CreateAccount />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

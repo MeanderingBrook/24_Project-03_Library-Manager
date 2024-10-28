@@ -327,3 +327,162 @@
 //       )}
 //     </div>
 //   );
+
+// Search.jsx
+
+// SAMPLE CODE -- USED
+// import React, { useState } from 'react';
+// import { useMutation, gql } from '@apollo/client';
+
+// const GET_USER = gql`
+//   query GetUser($id: ID!) {
+//     user(id: $id) {
+//       id
+//       name
+//       email
+//     }
+//   }
+// `;
+
+// function UserForm() {
+//   const [userId, setUserId] = useState('');
+//   const [getUser, { loading, error, data }] = useMutation(GET_USER);
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     getUser({ variables: { id: userId } });
+//   };
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type="text"
+//           placeholder="User ID"
+//           value={userId}
+//           onChange={(e) => setUserId(e.target.value)}
+//         />
+//         <button type="submit">Get User</button>
+//       </form>
+
+//       {loading && <p>Loading...</p>}
+//       {error && <p>Error: {error.message}</p>}
+//       {data && (
+//         <div>
+//           <p>ID: {data.user.id}</p>
+//           <p>Name: {data.user.name}</p>
+//           <p>Email: {data.user.email}</p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+// export default UserForm;
+
+// MIKE'S CODE
+// import SearchComponent from '../components/SearchComponent';
+
+// const ParentComponent = () => {
+//   const [searchInput, setSearchInput] = useState('');
+
+//   const handleSearch = (input) => {
+//     setSearchInput(input);
+//   };
+
+//   return (
+//     <div>
+//       <SearchComponent searchInput={searchInput} onSearch={handleSearch} />
+//     </div>
+//   );
+// };
+
+// export default ParentComponent;
+
+// SAMPLE CODE
+// import { useQuery, gql } from '@apollo/client';
+
+// const GET_USER = gql`
+//   query GetUser($id: ID!) {
+//     user(id: $id) {
+//       id
+//       name
+//       email
+//     }
+//   }
+// `;
+
+// const UserComponent = ({ userId }) => {
+//   const { loading, error, data } = useQuery(GET_USER, {
+//     variables: { id: userId }
+//   });
+
+//   if (loading) return <p>Loading...</p>;
+//   if (error) return <p>Error: {error.message}</p>;
+
+//   return (
+//     <div>
+//       <h1>{data.user.name}</h1>
+//       <p>{data.user.email}</p>
+//     </div>
+//   );
+// };
+
+// MOVED TO SEARCHSTATUS.JSX
+
+// Imports required App Modules
+// import { GET_STATUS } from '../../queries';
+
+// export default function StatusForm() {
+//   const [contentStatus, setContentStatus] = useState('');
+//   const [ status, setStatus ] = useState('')
+//   const { loading, error, data } = useQuery(GET_STATUS, {variables: { contentStatus: status }});
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     setStatus(contentStatus);
+//   };
+
+//   console.log("Search.jsx Line 19",data)
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit}>
+//         <input
+//           type='text'
+//           placeholder='Status'
+//           value={contentStatus}
+//           onChange={(e) => setContentStatus(e.target.value)}
+//         />
+//         <button type='submit'>Get Content</button>
+//       </form>
+
+//       {loading && <p>Loading...</p>}
+//       {error && <p>Error: {error.message}</p>}
+//       {data?.getStatus.map((getStatus) => (
+//         <li key={getStatus.id}>
+//         {getStatus.title} - {getStatus.author} - {getStatus.descr}{" "}
+//         - {getStatus.genre}
+//         </li>
+//       ))}
+//     </div>
+//   );
+// }
+
+// Nav.jsx
+// export default function Nav() {
+//   return (
+//     <NavBar
+//       links={[
+//         <Link key={1} to={`/`}>
+//           Home
+//         </Link>,
+//         <Link key={2} to={`contentform`}>
+//           Content Form
+//         </Link>,
+//         <Link key={3} to={`calendar`}>
+//           Calendar
+//         </Link>
+//       ]}
+//     />
+//   );
+// }
