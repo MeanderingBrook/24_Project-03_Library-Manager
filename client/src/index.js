@@ -24,7 +24,8 @@ import reportWebVitals from "./reportWebVitals";
 import Dashboard from "./pages/Dashboard";
 import Search from "./pages/Search";
 import Calendar from "./components/Calendar";
-import ContentForm from "./components/ContentForm";
+import ContentFormNew from "./components/ContentFormNew";
+import ContentFormEdit from "./components/ContentFormEdit";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 
@@ -49,7 +50,11 @@ const router = createBrowserRouter([
       {
         // Defines Content Form Route
         path: "/contentform",
-        element: <ContentForm />,
+        element: <ContentFormNew />,
+      },
+      {
+        path: "/contentedit/:contentId",
+        element: <ContentFormEdit />,
       },
       {
         path: "/contacts",

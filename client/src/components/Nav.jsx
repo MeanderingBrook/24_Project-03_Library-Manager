@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   const links = [
     { to: '/', label: 'Home' },
-    { to: 'contentform', label: 'Content Form' },
+    { to: 'contentform', label: 'New Content Form' },
     { to: 'calendar', label: 'Calendar' },
     { to: 'search', label: 'Search' },
     { to: 'login', label: 'Login' },

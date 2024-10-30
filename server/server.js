@@ -109,6 +109,27 @@ app.post("/contentform", async (req, res) => {
   }
 });
 
+// PUT Request to MongodDB Content Data
+app.put("/contentedit", async (req, res) => {
+  let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
+    req.body;
+
+  try {
+    const updatedContent = await Content.update({
+      title,
+      author,
+      descr,
+      genre,
+      copiesHeld,
+      copiesAvail,
+      status,
+    });
+    res.json(updatedContent);
+  } catch (err) {
+    res.json(err);
+  }
+});
+
 // app.get("/cms/:id", (req, res) => {
 //   const { id } = req.params;
 

@@ -1,5 +1,6 @@
 // Imports required React Modules
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Defines detailed Posts display
 export default function DashboardPosts({posts}) {
@@ -11,6 +12,8 @@ export default function DashboardPosts({posts}) {
         : posts.map((item) => (
             <div key={item.id}>
               <h2>Title: {item.title}</h2>
+              <p>ID: {item._id}</p>
+              <Link to={`/contentedit/${item._id}`}>Edit Content</Link>
               <p>Author: {item.author}</p>
               <p>Description: {item.descr}</p>
               <p>Genre: {item.genre}</p>

@@ -3,32 +3,28 @@ import React, { useState } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
 
 // Imports required App Modules
-import { LOGIN } from '../queries';
-import AuthService from '../utils/authorize'
+import { NEW_USER } from '../queries';
+// import Auth from '../pages/api/auth';
+import Auth from '../utils/authorize';
 
 // Defines Function to Search Content on the basis of Content 'Status'
-export default function Login() {
+export default function CreateAccount() {
 
-  const [existingUser, { error }] = useMutation(LOGIN);
+  const [newUser, { error }] = useMutation(NEW_USER);
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const { data } = await existingUser({
-      // const { data } = await login({
-        variables: { userName, password },
-      })
-      // console.log("Login.jsx Line 28", existingUser);
-      // console.log("Login.jsx Line 29", login);
-      AuthService.login(data.login.token)
-
-    } catch (err) {
-      console.error(err)
-      alert("User could not be authenticated.")
-    }
+  try {
+    const { data } = await newUser({
+      variables: { userName, password },
+    })
+    Auth.login(data.newUser.token)
+  } catch (err) {
+    console.error(err)
+  }
 
     // const res = await fetch("/api/auth", {
     //   method: "POST", 
@@ -49,11 +45,9 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Create Account</h1>
       <br />
 
-      {/* {AuthService.loggedIn() ? <p>You Are Logged In.</p>: <p>Log In.</p>} */}
- 
       <form onSubmit={handleSubmit}>
         <input
           value={userName}
@@ -72,7 +66,6 @@ export default function Login() {
         <br />
 
         <button type='submit'>Login</button>
-        <button onClick={AuthService.logout}>Log Out</button>
       </form>
     </div>
   )

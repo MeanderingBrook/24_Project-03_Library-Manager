@@ -18,6 +18,9 @@
 // User-04
 // password-04
 
+// User-05
+// password-05
+
 // Imports required React Modules
 // Note: Outlet serves as placeholder for Child Routes allowing for nested Routes
 import React, { useEffect, useState } from "react";
@@ -103,14 +106,14 @@ export default function App() {
 
       {/* Outlet invokes front-end Routes (defined in index.js) through React-Router-Dom Library */}
       <Outlet />
-      {/* <div>
+      <div>
         <h2>GraphQL Query: All Content Data</h2>
         <ContentData />
       </div>
       <div>
         <h2>GraphQL: Available Content Data</h2>
         <ContentAvailable />
-      </div> */}
+      </div>
     </ApolloProvider>
   );
 }
