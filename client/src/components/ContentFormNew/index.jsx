@@ -15,7 +15,7 @@ const initialValues = {
   errorMessage: "",
 };
 
-export default function ContentForm() {
+export default function ContentFormNew() {
   const [values, setValues] = useState(initialValues);
 
   const handleInputChange = (e) => {
@@ -34,7 +34,14 @@ export default function ContentForm() {
       values.errorMessage('Title and Author are required.');
       return;
     }
-    alert(`The entered Title is, ${values.title}, and the entered Author is, ${values.author}.`)
+    // alert(`The entered Title is, ${values.title}, and the entered Author is, ${values.author}.`)
+    alert(
+      `
+      Successfully saved new Content with the Title,
+          ${values.title}, 
+      and Author, 
+          ${values.author}.
+      `)
     console.log("index.jsx Line 38", values);
 
     // const { title, author, descr, genre, copiesHeld, copiesAvail, status } = values;
@@ -49,7 +56,7 @@ export default function ContentForm() {
   return (
     <div>
       <h1>
-        Your Title is, {values.title}, by the Author, {values.author}.
+        New content Title is, {values.title}, by the Author, {values.author}.
       </h1>
       <form className="form" onSubmit={handleFormSubmit}>
         <input 

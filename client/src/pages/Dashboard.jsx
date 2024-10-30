@@ -70,6 +70,7 @@ export default function Dashboard() {
       <DashboardControl handleDashboardClick={handleDashboardClick} handlePostsClick={handlePostsClick} />
       <DashboardTable showPosts={showPosts} posts={posts} handleApprove={handleApprove} handleEdit={handleEdit} />
       <DashboardPosts posts={posts} />
+      {/* <DashboardPosts showPosts={showPosts} posts={posts} /> */}
     </div>
     
   );
