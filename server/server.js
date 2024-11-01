@@ -48,7 +48,7 @@ db.on(
   "error",
   console.error.bind(
     console,
-    "server.js Line 39: Unable to connect to MongoDB Instance:"
+    "server.js Line 51: Unable to connect to MongoDB Instance:"
   )
 );
 db.once("open", () => {
@@ -71,22 +71,23 @@ db.once("open", () => {
 
 // FIX THIS !!!
 // GET Request of MongoDB Content Data
+// // Note: GET Request to Root ("/cms") rather than sub-Route ("/")
 // Referenced by Dashboard.js to populate Dashboard with MongoDB Data
 app.get("/cms", async (req, res) => {
   try {
     const data = await Content.find({});
-    // console.log("server.js Line 88", data);
+    // console.log("server.js Line 79", data);
 
     res.json(data);
   } catch (err) {
-    console.log("server.js Line 97: CMS Data Return Failed.");
-    res.json({ message: "server.js Line 98: CMS Data Return Failed." });
+    // console.log("server.js Line 83: CMS Data Return Failed.");
+    res.json({ message: "server.js Line 84: CMS Data Return Failed." });
   }
 });
 
 // POST Request to MongoDB Content Data
 app.post("/contentform", async (req, res) => {
-  // console.log("server.js Line 61", req.body);
+  // console.log("server.js Line 90", req.body);
   // Deconstructs the Incoming New Content POST Request Body
   let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
     req.body;
@@ -101,43 +102,81 @@ app.post("/contentform", async (req, res) => {
       copiesAvail,
       status,
     });
-    // console.log("server.js Line 87", newContent);
+    // console.log("server.js Line 105", newContent);
     res.json(newContent);
   } catch (err) {
-    console.log("server.js Line 90, newContent POST Request failed.");
+    console.log("server.js Line 108, newContent POST Request failed.");
     res.json(err);
   }
 });
 
 // PUT Request to MongodDB Content Data
-app.put("/contentedit", async (req, res) => {
+app.put("/contentedit/:contentId", async (req, res) => {
   let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
     req.body;
 
   try {
-    const updatedContent = await Content.update({
-      title,
-      author,
-      descr,
-      genre,
-      copiesHeld,
-      copiesAvail,
-      status,
-    });
+    const updatedContent = await Content.findByIdAndUpdate(
+      req.params.contentId,
+      {
+        title,
+        author,
+        descr,
+        genre,
+        copiesHeld,
+        copiesAvail,
+        status,
+      }
+    );
     res.json(updatedContent);
   } catch (err) {
     res.json(err);
   }
 });
 
-// app.get("/cms/:id", (req, res) => {
-//   const { id } = req.params;
+// NEW FRIDAY !!!
+// DELETE Request to MongodDB Content Data
+app.delete("/contentedit/:contentId", async (req, res) => {
+  let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
+    req.body;
 
-//   console.log(
-//     "Server index.js Line 74, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
-//   );
-//   res.json(contentPost);
-// });
+  try {
+    const deletedContent = await Content.findByIdAndDelete(
+      req.params.contentId,
+      {
+        title,
+        author,
+        descr,
+        genre,
+        copiesHeld,
+        copiesAvail,
+        status,
+      }
+    );
+    // IS THIS REQUIRED ??? !!! SEEMED TO BE BASED ON ERROR
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+// DONT THINK THIS IS NEEDED !!!
+app.get("/cms/:contentId", async (req, res) => {
+  const { contentId } = req.params;
+
+  try {
+    const existingContent = await Content.findById(contentId);
+    res.json(existingContent);
+  } catch (err) {
+    res.json(err);
+  }
+
+  console.log(
+    "Server index.js Line 176, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
+  );
+  // res.json(contentPost);
+});
 
 // app.post("/cms/approve/:id", (req, res) => {
 //   const { id } = req.params;
@@ -207,15 +246,6 @@ const startApolloServer = async () => {
     expressMiddleware(server, {
       context: authMiddleware,
     })
-    // expressMiddleware(server, {
-    // context: async ({ req, res }) => ({
-    //   req: request,
-    //   res: express.response,
-    //   }),
-    // })
-    // cors(),
-    // express.urlencoded({ extended: false }),
-    // express.json(),
   );
 };
 

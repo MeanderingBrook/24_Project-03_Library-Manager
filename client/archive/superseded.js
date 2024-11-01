@@ -486,3 +486,89 @@
 //     />
 //   );
 // }
+
+// // //
+// Content.js
+
+// Content.find({})
+//   .exec()
+//   .then((library) => {
+//     if (library.length === 0) {
+//       Content.insertMany([
+//         {
+//           id: "1",
+//           title: "Content 1: MongoDB",
+//           author: "Abe Abel",
+//           descr: "Description 1: MongoDB",
+//           genre: "Miscellaneous",
+//           copiesHeld: 1,
+//           copiesAvail: 1,
+//           status: "Pending",
+//           allowComment: true,
+//         },
+//         {
+//           id: "2",
+//           title: "Content 2: MongoDB",
+//           author: "Bob Bobble",
+//           descr: "Description 2: MongoDB",
+//           genre: "Miscellaneous",
+//           copiesHeld: 2,
+//           copiesAvail: 2,
+//           status: "Pending",
+//           allowComment: true,
+//         },
+//         {
+//           id: "3",
+//           title: "Content 3: MongoDB",
+//           author: "Carl Carlson",
+//           descr: "Description 3: MongoDB",
+//           genre: "Miscellaneous",
+//           copiesHeld: 3,
+//           copiesAvail: 3,
+//           status: "Pending",
+//           allowComment: false,
+//         },
+//         {
+//           id: "4",
+//           title: "Content 4: MongoDB",
+//           author: "David Davidson",
+//           descr: "Description 4: MongoDB",
+//           genre: "Miscellaneous",
+//           copiesHeld: 4,
+//           copiesAvail: 4,
+//           status: "Approved",
+//           allowComment: false,
+//         },
+//         {
+//           id: "5",
+//           title: "Content 5: MongoDB",
+//           author: "Erik Elphiba",
+//           descr: "Description 5: MongoDB",
+//           genre: "Miscellaneous",
+//           copiesHeld: 5,
+//           copiesAvail: 5,
+//           status: "Approved",
+//           allowComment: false,
+//         },
+//       ]);
+//     }
+//   });
+// // //
+
+// server.js
+//   app.use(
+//     "/graphql",
+//     expressMiddleware(server, {
+//       context: authMiddleware,
+//     })
+//     // expressMiddleware(server, {
+//     // context: async ({ req, res }) => ({
+//     //   req: request,
+//     //   res: express.response,
+//     //   }),
+//     // })
+//     // cors(),
+//     // express.urlencoded({ extended: false }),
+//     // express.json(),
+//   );
+// // // //
