@@ -1,26 +1,21 @@
 // Imports required React Modules
-import { useState, useEffect, Form } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-// const initialValues = {
-//   title: "",
-//   author: "",
-//   descr: "",
-//   genre: "",
-//   copiesHeld: "",
-//   copiesAvail: "",
-//   status: "",
-//   errorMessage: "",
-// };
-
-export default function ContentFormEdit({ contentId }) {
-  const [editValues, setEditValues] = useState(null);
+// Defines Content Edit Form functionality, edit of existing Content Record
+export default function ContentFormEdit() {
+  const [editValues, setEditValues] = useState({});
+  const { contentId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const contentEdit = async() => {
       try {
-        const res = await fetch("/contentedit/:contentId");
-        setEditValues(res.data);
-        console.log("index.jsx Line 23", setEditValues)
+        const res = await fetch("/cms/"+contentId);
+        const data = await res.json()
+        setEditValues(data);
+        // console.log("index.jsx Line 17", data)
+        // console.log("index.jsx Line 18", setEditValues)
       } catch (error) {
         console.error(error);
       }
@@ -41,30 +36,45 @@ export default function ContentFormEdit({ contentId }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    // if (!editValues.title || !editValues.author) {
-    //   editValues.errorMessage('Title and Author are required.');
-    //   return;
-    // }
-
-    alert(
-      `
-      Successfully saved new Content with the Title,
-          ${editValues.title}, 
-      and Author, 
-          ${editValues.author}.
-      `)
+    if (!editValues.title || !editValues.author) {
+      editValues.errorMessage('Title and Author are required.');
+      return;
+    }
     
-      // console.log("index.jsx Line 38", editValues);
+    // console.log("index.jsx Line 44", editValues);
 
-    // const { title, author, descr, genre, copiesHeld, copiesAvail, status } = editValues;
-    const res = await fetch("/contentedit/:contentId", {method: "PUT", body: JSON.stringify(editValues), headers: {"Content-Type": "application/json"}})
+    const res = await fetch("/contentedit/"+contentId, {method: "PUT", body: JSON.stringify(editValues), headers: {"Content-Type": "application/json"}})
+    
+    alert(
+    `
+    Successfully edited Content with the updated Title,
+        ${editValues.title}, 
+    and Author, 
+        ${editValues.author}.
+    `)
+
     const data = await res.json();
-    console.log("index.jsx Line 62", data);
-
-    // NOT NEEDED
-    // Returns Data Element Values to 'initialValues' ('')
-    // setEditValues(initialValues);
+    // console.log("index.jsx Line 57", data);
+    navigate("/")
   };
+
+  const handleFormDelete = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/contentedit/"+contentId, {method: "DELETE", body: JSON.stringify(editValues), headers: {"Content-Type": "application/json"}})
+    
+    alert(
+    `
+    Successfully deleted Content with the Title,
+        ${editValues.title}, 
+    and Author, 
+        ${editValues.author}.
+    `)
+    
+    // IS THERE A RESPONSE HERE ??? !!!
+    // const response = await res.json();
+    navigate("/")
+  }
 
   return (
     <div>
@@ -128,7 +138,8 @@ export default function ContentFormEdit({ contentId }) {
           type="text"
           placeholder="Status"
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Submit Edits</button>
+        <button onClick={handleFormDelete}>Delete Record</button>
       </form>
       {editValues.errorMessage && (
         <div>

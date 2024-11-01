@@ -18,8 +18,9 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
                 <th>Copies Held</th>
                 <th>Copies Available</th>
                 <th>Status</th>
-                <th>Allow Comments</th>
+                {/* <th>Allow Comments</th> */}
                 <th>Date Created</th>
+                <th>Buttons</th>
               </tr>
             </thead>
             <tbody>
@@ -32,8 +33,9 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
                   <td>{item.copiesHeld}</td>
                   <td>{item.copiesAvail}</td>
                   <td>{item.status}</td>
-                  <td>{item.allowComment ? "Yes" : "No"}</td>
+                  {/* <td>{item.allowComment ? "Yes" : "No"}</td> */}
                   <td>{item.dateCreated}</td>
+                  {/* FIX THIS !!! */}
                   <td>
                     {posts.status === "Pending" && (
                       <>

@@ -91,6 +91,7 @@ const resolvers = {
 
       // Logs In Existing User if User Name and Password are both correct
       const token = signToken(existingUser);
+      console.log(existingUser);
 
       // Returns Authorization Object of 'token' and User credentials
       return { token, existingUser };

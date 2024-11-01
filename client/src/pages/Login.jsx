@@ -23,6 +23,8 @@ export default function Login() {
       })
       // console.log("Login.jsx Line 28", existingUser);
       // console.log("Login.jsx Line 29", login);
+      console.log(data.login)
+      // localStorage.setItem("userId", data.login.user._id)
       AuthService.login(data.login.token)
 
     } catch (err) {
