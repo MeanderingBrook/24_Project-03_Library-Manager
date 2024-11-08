@@ -5,6 +5,7 @@ export const GET_ALL_CONTENT = gql`
     getAllContent {
       title
       author
+      contentType
       descr
       genre
       status
@@ -17,6 +18,7 @@ export const GET_AVAILABLE = gql`
     getAvailable {
       title
       author
+      contentType
       descr
       genre
     }
@@ -28,6 +30,7 @@ export const GET_STATUS = gql`
     getByStatus(contentStatus: $contentStatus) {
       title
       author
+      contentType
       descr
       genre
       status
@@ -40,6 +43,7 @@ export const GET_GENRE = gql`
     getByGenre(contentGenre: $contentGenre) {
       title
       author
+      contentType
       descr
       genre
       status
@@ -52,6 +56,7 @@ export const GET_TITLE = gql`
     getByTitle(contentTitle: $contentTitle) {
       title
       author
+      contentType
       descr
       genre
       status
@@ -64,6 +69,7 @@ export const GET_AUTHOR = gql`
     getByAuthor(contentAuthor: $contentAuthor) {
       title
       author
+      contentType
       descr
       genre
       status

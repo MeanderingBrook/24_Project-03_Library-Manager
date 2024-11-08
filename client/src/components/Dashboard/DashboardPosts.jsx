@@ -19,6 +19,7 @@ export default function DashboardPosts({posts}) {
               {/* <p>ID: {item._id}</p> */}
               {/* <Link to={`/contentedit/${item._id}`}>{item.title}</Link> */}
               <p>Author: {item.author}</p>
+              <p>Content Type: {item.contentType}</p>
               <p>Description: {item.descr}</p>
               <p>Genre: {item.genre}</p>
               <p>Copies Held: {item.copiesHeld}</p>

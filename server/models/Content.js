@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 // Defines MongoDB Schema for Content
 const contentSchema = new mongoose.Schema({
+  contentType: { type: String, required: true },
   title: { type: String, required: true },
   author: { type: String, required: true },
   descr: { type: String, required: true },

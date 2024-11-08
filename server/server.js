@@ -55,23 +55,9 @@ db.once("open", () => {
   console.log("server.js Line 42: Connection established to MongoDB Instance");
 });
 
-// // GET Request of MongoDB Library Data
-// // Note: GET Request to Root ("/") rather than sub-Route ("/cms")
-// app.get("/", async (req, res) => {
-//   try {
-//     const libraryData = await Content.find({});
-//     // console.log("server.js Line 50: Content Data:", libraryData);
-
-//     res.json(libraryData);
-//   } catch (err) {
-//     console.log(err);
-//     res.json(err);
-//   }
-// });
-
 // FIX THIS !!!
 // GET Request of MongoDB Content Data
-// // Note: GET Request to Root ("/cms") rather than sub-Route ("/")
+// Note: GET Request to Root ("/cms") rather than sub-Route ("/")
 // Referenced by Dashboard.js to populate Dashboard with MongoDB Data
 app.get("/cms", async (req, res) => {
   try {
@@ -89,13 +75,22 @@ app.get("/cms", async (req, res) => {
 app.post("/contentform", async (req, res) => {
   // console.log("server.js Line 90", req.body);
   // Deconstructs the Incoming New Content POST Request Body
-  let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
-    req.body;
+  let {
+    title,
+    author,
+    contentType,
+    descr,
+    genre,
+    copiesHeld,
+    copiesAvail,
+    status,
+  } = req.body;
 
   try {
     const newContent = await Content.create({
       title,
       author,
+      contentType,
       descr,
       genre,
       copiesHeld,
@@ -112,8 +107,16 @@ app.post("/contentform", async (req, res) => {
 
 // PUT Request to MongodDB Content Data
 app.put("/contentedit/:contentId", async (req, res) => {
-  let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
-    req.body;
+  let {
+    title,
+    author,
+    contentType,
+    descr,
+    genre,
+    copiesHeld,
+    copiesAvail,
+    status,
+  } = req.body;
 
   try {
     const updatedContent = await Content.findByIdAndUpdate(
@@ -121,6 +124,7 @@ app.put("/contentedit/:contentId", async (req, res) => {
       {
         title,
         author,
+        contentType,
         descr,
         genre,
         copiesHeld,
@@ -137,8 +141,16 @@ app.put("/contentedit/:contentId", async (req, res) => {
 // NEW FRIDAY !!!
 // DELETE Request to MongodDB Content Data
 app.delete("/contentedit/:contentId", async (req, res) => {
-  let { title, author, descr, genre, copiesHeld, copiesAvail, status } =
-    req.body;
+  let {
+    title,
+    author,
+    contentType,
+    descr,
+    genre,
+    copiesHeld,
+    copiesAvail,
+    status,
+  } = req.body;
 
   try {
     const deletedContent = await Content.findByIdAndDelete(
@@ -146,6 +158,7 @@ app.delete("/contentedit/:contentId", async (req, res) => {
       {
         title,
         author,
+        contentType,
         descr,
         genre,
         copiesHeld,
@@ -177,59 +190,6 @@ app.get("/cms/:contentId", async (req, res) => {
   );
   // res.json(contentPost);
 });
-
-// app.post("/cms/approve/:id", (req, res) => {
-//   const { id } = req.params;
-//   const content = contentList.find((item) => item.id === id);
-
-//   if (content) {
-//     content.status = "Approved";
-//     // Move Approved Content to end of List
-//     contentList = contentList.filter((item) => item.id !== id);
-//     contentList.push(content);
-
-//     res.json({
-//       message: "Content Approved.",
-//     });
-//   } else {
-//     res.status(404).json({
-//       error: "Content Not Found.",
-//     });
-//   }
-// });
-
-// app.put("/cms/edit/:id", (req, res) => {
-//   const { id } = req.params;
-//   const updatedContent = req.body;
-//   const index = contentList.findIndex((item) => item.id === id);
-
-//   if (index !== -1) {
-//     contentList[index] = {
-//       ...contentList[index],
-//       ...updatedContent,
-//     };
-//   } else {
-//     res.status(404).json({
-//       error: "Content Not Found.",
-//     });
-//   }
-// });
-
-// app.post("/cms", (req, res) => {
-//   const newContent = req.body;
-//   newContent.status = "Pending";
-//   contentList.push(newContent);
-
-//   res.json({
-//     message: "Content Successfully Added.",
-//   });
-// });
-
-// app.get("/api", (req, res) => {
-//   res.send(
-//     "index.js Line 27: Library Manager App Server has responded to API (/api) Request."
-//   );
-// });
 
 // Defines Apollo Server to respond to GraphQL Queries
 const server = new ApolloServer({

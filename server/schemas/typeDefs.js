@@ -2,6 +2,7 @@ const typeDefs = `
 
      type Content {
         _id: ID
+        contentType: String
         title: String
         author: String
         descr: String

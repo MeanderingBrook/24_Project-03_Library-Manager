@@ -17,7 +17,7 @@ export default function ContentData() {
       <ul>
         {data.getAllContent.map((getAllContent) => (
           <li key={getAllContent.id}>
-            {getAllContent.title} - {getAllContent.author} - {getAllContent.descr} -{" "}
+            {getAllContent.title}, by {getAllContent.author} - {getAllContent.contentType} - {getAllContent.descr} -{" "}
             {getAllContent.genre} - {getAllContent.status}
           </li>
         ))}
