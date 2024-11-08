@@ -13,6 +13,7 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
               <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Content Type</th>
                 <th>Description</th>
                 <th>Genre</th>
                 <th>Copies Held</th>
@@ -28,6 +29,7 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
                 <tr key={item.id}>
                   <td>{item.title}</td>
                   <td>{item.author}</td>
+                  <td>{item.contentType}</td>
                   <td>{item.descr}</td>
                   <td>{item.genre}</td>
                   <td>{item.copiesHeld}</td>

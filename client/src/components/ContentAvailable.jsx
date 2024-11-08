@@ -17,7 +17,7 @@ export default function ContentAvailable() {
       <ul>
         {data.getAvailable.map((getAvailable) => (
           <li key={getAvailable.id}>
-            {getAvailable.title} - {getAvailable.author} - {getAvailable.descr}{" "}
+            {getAvailable.title}, by {getAvailable.author} - {getAvailable.contentType} - {getAvailable.descr}{" "}
             - {getAvailable.genre}
           </li>
         ))}

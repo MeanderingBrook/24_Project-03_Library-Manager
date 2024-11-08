@@ -572,3 +572,79 @@
 //     // express.json(),
 //   );
 // // // //
+
+// server.js
+// // GET Request of MongoDB Library Data
+// // Note: GET Request to Root ("/") rather than sub-Route ("/cms")
+// app.get("/", async (req, res) => {
+//   try {
+//     const libraryData = await Content.find({});
+//     // console.log("server.js Line 50: Content Data:", libraryData);
+
+//     res.json(libraryData);
+//   } catch (err) {
+//     console.log(err);
+//     res.json(err);
+//   }
+// });
+
+// app.post("/cms/approve/:id", (req, res) => {
+//   const { id } = req.params;
+//   const content = contentList.find((item) => item.id === id);
+
+//   if (content) {
+//     content.status = "Approved";
+//     // Move Approved Content to end of List
+//     contentList = contentList.filter((item) => item.id !== id);
+//     contentList.push(content);
+
+//     res.json({
+//       message: "Content Approved.",
+//     });
+//   } else {
+//     res.status(404).json({
+//       error: "Content Not Found.",
+//     });
+//   }
+// });
+
+// app.put("/cms/edit/:id", (req, res) => {
+//   const { id } = req.params;
+//   const updatedContent = req.body;
+//   const index = contentList.findIndex((item) => item.id === id);
+
+//   if (index !== -1) {
+//     contentList[index] = {
+//       ...contentList[index],
+//       ...updatedContent,
+//     };
+//   } else {
+//     res.status(404).json({
+//       error: "Content Not Found.",
+//     });
+//   }
+// });
+
+// app.post("/cms", (req, res) => {
+//   const newContent = req.body;
+//   newContent.status = "Pending";
+//   contentList.push(newContent);
+
+//   res.json({
+//     message: "Content Successfully Added.",
+//   });
+// });
+
+// app.get("/api", (req, res) => {
+//   res.send(
+//     "index.js Line 27: Library Manager App Server has responded to API (/api) Request."
+//   );
+// });
+// // // // //
+
+// index.js
+// Primary index.js on Client
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();

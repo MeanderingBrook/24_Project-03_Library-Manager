@@ -5,6 +5,7 @@ import { useState, Form } from "react";
 // import { validateEmail, checkPassword } from "../../utils/helpers";
 
 const initialValues = {
+  contentType: "",
   title: "",
   author: "",
   descr: "",
@@ -17,6 +18,14 @@ const initialValues = {
 
 export default function ContentFormNew() {
   const [values, setValues] = useState(initialValues);
+
+  const contentType = [
+    { value: 'book', label: 'Book' },
+    { value: 'periodical', label: 'Periodical' },
+    { value: 'newsarticle', label: 'News Article' },
+    { value: 'essay', label: 'Essay' },
+    { value: 'post', label: 'Post' },
+  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,6 +68,24 @@ export default function ContentFormNew() {
         New content Title is, {values.title}, by the Author, {values.author}.
       </h1>
       <form className="form" onSubmit={handleFormSubmit}>
+        <label>
+          Content Type
+          <select
+            value={values.contentType}
+            onChange={handleInputChange}
+            name="contentType"
+            label="Content Type"
+          >
+            <option value="">
+              Select a Content Type
+            </option>
+              {contentType.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+          </select>
+        </label>
         <input 
           value={values.title} 
           onChange={handleInputChange}
