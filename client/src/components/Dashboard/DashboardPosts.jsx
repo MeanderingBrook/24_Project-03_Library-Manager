@@ -10,7 +10,7 @@ export default function DashboardPosts({posts}) {
       {!posts
         ? null
         : posts.map((item) => (
-            <div key={item.id}>
+            <div className="posts" key={item.id}>
               {/* FIX THIS !!! LINK SCROLLS FURTHER DOWN PAGE !!! */}
               <h2>
                 <Link to={`/contentedit/${item._id}`}>Title: {item.title}</Link>
