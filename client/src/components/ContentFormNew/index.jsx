@@ -92,7 +92,7 @@ export default function ContentFormNew() {
   };
 
   return (
-    <div>
+    <div className="newForm">
       {/* HIDE HEADER UNTIL CONTENT IS POPULATED !!! */}
       <h1>
         Your content Title is,<span style={{ color: 'blue' }}> {values.title}</span>, by the Author,<span style={{ color: 'blue' }}> {values.author}</span>.
@@ -101,6 +101,7 @@ export default function ContentFormNew() {
         <label>
           {/* Content Type */}
           <select
+            className="selectField"
             value={values.contentType}
             onChange={handleInputChange}
             name="contentType"
@@ -157,6 +158,7 @@ export default function ContentFormNew() {
         <label>
           {/* Genre */}
           <select
+            className="selectField"
             value={values.contentGenre}
             onChange={handleInputChange}
             name="genre"
@@ -199,6 +201,7 @@ export default function ContentFormNew() {
         <label>
           {/* Status */}
           <select
+            className="selectField"
             value={values.contentStatus}
             onChange={handleInputChange}
             // name="contentStatus"
@@ -215,7 +218,8 @@ export default function ContentFormNew() {
                 </option>
               ))}
           </select>
-        </label>        
+        </label>      
+        <br/>  
         <button type="submit">Submit</button>
       </form>
       {values.errorMessage && (
