@@ -66,7 +66,7 @@ export default function Dashboard() {
 
   return (
     <div className="app-container">
-      <h2>Content Management System</h2>
+      {/* <h2>Content Management System</h2> */}
       <DashboardControl handleDashboardClick={handleDashboardClick} handlePostsClick={handlePostsClick} />
       <DashboardTable showPosts={showPosts} posts={posts} handleApprove={handleApprove} handleEdit={handleEdit} />
       <DashboardPosts posts={posts} />

@@ -9,11 +9,20 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
+  // email: {
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  // },
   password: {
     type: String,
     required: true,
     minlength: 5,
   },
+  // resetLink: {
+  //   data: String,
+  //   default: "",
+  // },
   content: [
     {
       type: Schema.Types.ObjectId,

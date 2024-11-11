@@ -87,7 +87,8 @@ export default function App() {
   return (
     <ApolloProvider client={client} className="app-container">
       <div>
-        <h2>HTML Rendered on all Pages (App.js)</h2>
+        {/* <h2>HTML Rendered on all Pages (App.js)</h2> */}
+        <h2>Personal Content Management Systems (CMS)</h2>
       </div>
 
       <Nav />
