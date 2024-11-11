@@ -9,23 +9,52 @@ const initialValues = {
   title: "",
   author: "",
   descr: "",
-  genre: "",
+  // genre: "",
+  contentGenre: "",
   copiesHeld: "",
   copiesAvail: "",
-  status: "",
+  // status: "",
+  contentStatus: "",
   errorMessage: "",
 };
 
 export default function ContentFormNew() {
   const [values, setValues] = useState(initialValues);
+  const [showPost, setShowPost] = useState(true);
 
+  // Enumerates Content Type options for Drop-Down Menu
   const contentType = [
-    { value: 'book', label: 'Book' },
-    { value: 'periodical', label: 'Periodical' },
-    { value: 'newsarticle', label: 'News Article' },
-    { value: 'essay', label: 'Essay' },
-    { value: 'post', label: 'Post' },
+    { value: 'Book', label: 'Book' },
+    { value: 'Periodical', label: 'Periodical' },
+    { value: 'News Article', label: 'News Article' },
+    { value: 'Essay', label: 'Essay' },
+    { value: 'Post', label: 'Post' },
   ];
+
+  const contentGenre = [
+    { value: 'Literary Fiction', label: 'Literary Fiction' },
+    { value: 'Historical Fiction', label: 'Historical Fiction' },
+    { value: 'Romance Fiction', label: 'Romance Fiction' },
+    { value: 'Science Fiction', label: 'Science Fiction' },
+    { value: 'Nonfiction: Current Events', label: 'Nonfiction: Current Events' },
+    { value: 'Nonfiction: History', label: 'Nonfiction: History' },
+    { value: 'Nonfiction: Science', label: 'Nonfiction: Science' },
+    { value: 'Commentary', label: 'Commentary' },
+    { value: 'Humor', label: 'Humor' },
+    { value: 'Uncategorized', label: 'Uncategorized' },
+  ]
+
+  const contentStatus = [
+    { value: 'Pending', label: 'Pending' },
+    { value: 'Approved', label: 'Approved' },
+    { value: 'Available', label: 'Available' },
+    { value: 'Unavailable', label: 'Unavailable' },
+  ]
+
+  // Toggle should be replaced by If Then for Post contentType !!!
+  const togglePostField = () => {
+    setShowPost(!showPost);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -64,12 +93,13 @@ export default function ContentFormNew() {
 
   return (
     <div>
+      {/* HIDE HEADER UNTIL CONTENT IS POPULATED !!! */}
       <h1>
-        New content Title is, {values.title}, by the Author, {values.author}.
+        Your content Title is,<span style={{ color: 'blue' }}> {values.title}</span>, by the Author,<span style={{ color: 'blue' }}> {values.author}</span>.
       </h1>
       <form className="form" onSubmit={handleFormSubmit}>
         <label>
-          Content Type
+          {/* Content Type */}
           <select
             value={values.contentType}
             onChange={handleInputChange}
@@ -77,7 +107,7 @@ export default function ContentFormNew() {
             label="Content Type"
           >
             <option value="">
-              Select a Content Type
+              Select a Type
             </option>
               {contentType.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -110,14 +140,38 @@ export default function ContentFormNew() {
           type="text"
           placeholder="Description"
         />
-        <input 
+        {/* !!! Hidden Post Field */}
+        {/* {
+          showPost && (
+            <input type="text" placeholder="Your Post" />
+          )
+        } */}
+        {/* <input 
           value={values.genre}
           onChange={handleInputChange}
           name="genre"
           label="Genre"
           type="text"
           placeholder="Genre"
-        />
+        /> */}
+        <label>
+          {/* Genre */}
+          <select
+            value={values.contentGenre}
+            onChange={handleInputChange}
+            name="genre"
+            label="genre"
+          >
+            <option value="">
+              Select a Genre
+            </option>
+              {contentGenre.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+          </select>
+        </label>        
         <input 
           value={values.copiesHeld}
           onChange={handleInputChange}
@@ -134,14 +188,34 @@ export default function ContentFormNew() {
           type="text"
           placeholder="Copies Available"
         />
-        <input 
+        {/* <input 
           value={values.status}
           onChange={handleInputChange}
           name="status"
           label="Status"
           type="text"
           placeholder="Status"
-        />
+        /> */}
+        <label>
+          {/* Status */}
+          <select
+            value={values.contentStatus}
+            onChange={handleInputChange}
+            // name="contentStatus"
+            name="status"
+            // label="Content Status"
+            label="status"
+          >
+            <option value="">
+              Select a Status
+            </option>
+              {contentStatus.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+          </select>
+        </label>        
         <button type="submit">Submit</button>
       </form>
       {values.errorMessage && (

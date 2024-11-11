@@ -138,7 +138,6 @@ app.put("/contentedit/:contentId", async (req, res) => {
   }
 });
 
-// NEW FRIDAY !!!
 // DELETE Request to MongodDB Content Data
 app.delete("/contentedit/:contentId", async (req, res) => {
   let {
@@ -174,22 +173,23 @@ app.delete("/contentedit/:contentId", async (req, res) => {
   }
 });
 
+// COMMENTED OUT SAT 9 NOV !!!
 // DONT THINK THIS IS NEEDED !!!
-app.get("/cms/:contentId", async (req, res) => {
-  const { contentId } = req.params;
+// app.get("/cms/:contentId", async (req, res) => {
+//   const { contentId } = req.params;
 
-  try {
-    const existingContent = await Content.findById(contentId);
-    res.json(existingContent);
-  } catch (err) {
-    res.json(err);
-  }
+//   try {
+//     const existingContent = await Content.findById(contentId);
+//     res.json(existingContent);
+//   } catch (err) {
+//     res.json(err);
+//   }
 
-  console.log(
-    "Server index.js Line 176, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
-  );
-  // res.json(contentPost);
-});
+//   console.log(
+//     "Server index.js Line 176, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
+//   );
+//   // res.json(contentPost);
+// });
 
 // Defines Apollo Server to respond to GraphQL Queries
 const server = new ApolloServer({
