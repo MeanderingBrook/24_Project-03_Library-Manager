@@ -100,8 +100,6 @@ export default function ContentFormEdit() {
         ${editValues.author}.
     `)
     
-    // IS THERE A RESPONSE HERE ??? !!!
-    // const response = await res.json();
     navigate("/")
   }
 

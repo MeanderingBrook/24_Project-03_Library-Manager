@@ -48,7 +48,7 @@ const resolvers = {
 
     getByAuthor: async (parent, { contentAuthor }, context) => {
       let data = await Content.find({ author: contentAuthor });
-      // console.log("resolvers.js Line 40", data);
+      console.log("resolvers.js Line 40", data);
       // console.log("resolvers.js Line 41", contentAuthor);
       return data;
     },

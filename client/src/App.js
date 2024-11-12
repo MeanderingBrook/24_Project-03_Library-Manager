@@ -73,7 +73,7 @@ export default function App() {
     <ApolloProvider client={client} className="app-container">
       <div>
         {/* <h2>HTML Rendered on all Pages (App.js)</h2> */}
-        <h1 style={{ color: "#0090C1" }}>
+        <h1 style={{ color: "#3D5A80" }}>
           Personal Content Management Systems (CMS)
         </h1>
       </div>
@@ -88,7 +88,10 @@ export default function App() {
         </div>
       ) : (
         <p>
-          <Link to="/login">Log In</Link>
+          {/* <Link to="/login">You Are Not Logged In</Link> */}
+          <Link to="/login">
+            <button>Log In</button>
+          </Link>
         </p>
       )}
 
