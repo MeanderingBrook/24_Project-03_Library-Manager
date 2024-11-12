@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function DashboardPosts({posts}) {
   return(
     <div>
+      <h1 style={{color: "#0090C1"}}>Featured Content</h1>
       {/* {posts.length > 0 ? <h2>We Have Posts</h2> : <h2>No Posts</h2>} */}
       {!posts
         ? null
@@ -19,10 +20,14 @@ export default function DashboardPosts({posts}) {
               <p>Content Type: {item.contentType}</p>
               <p>Description: {item.descr}</p>
               <p>Genre: {item.genre}</p>
+              {/* CONDITIONAL APPEARANCE !!! */}
+              <p>Post Content: {item.postContent}</p>
+              {/* CONDITIONAL APPEARANCE !!! */}
+              <p>Resource URL: {item.url}</p>
               <p>Copies Held: {item.copiesHeld}</p>
               <p>Copies Available: {item.copiesAvail}</p>
               <p>Status: {item.status}</p>  
-              <p>Date Created: {item.dateCreated}</p>
+              {/* <p>Date Created: {item.dateCreated}</p> */}
             </div>
           ))}
     </div>

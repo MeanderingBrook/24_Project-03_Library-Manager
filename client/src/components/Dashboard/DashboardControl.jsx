@@ -6,7 +6,7 @@ export default function DashboardControl({handleDashboardClick, handlePostsClick
   return (
     <div>
       <div>
-        <h2>Admin Panel</h2>
+        {/* <h2>Admin Panel</h2> */}
         <button onClick={handleDashboardClick}>Dashboard</button>
         <br />
         <br />

@@ -84,6 +84,14 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+.submitButton:hover {
+    background-color: #4CAF50;
+}
+
+.deleteButton:hover {
+    background-color: red;
+}
  
 textarea,
 input[type="text"],
@@ -106,19 +114,37 @@ ul {
     margin-right: 10%;
     box-shadow: 8px 5px 3px #38AECC;
     border: 1px solid #0090C1;
+    border-radius: 10px;
     color: #01295F;
 }
 
 .newForm {
     margin-left: 10%;
     margin-right: 10%;
+    box-shadow: 8px 5px 3px #38AECC;
     border: 1px solid #0090C1;
+    border-radius: 10px;
+}
+
+.editForm {
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 8px 5px 3px #38AECC;
+    border: 1px solid #0090C1;
+    border-radius: 10px;
 }
 
 .selectField {
-    /* padding-left: 100px;
-    padding-right: 100px; */
-    /* margin-left: 1rem;
-    margin-right: 10rem; */
     width: 75%;
+    height: 30px;
+}
+
+.textField {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    width: 73%;
+    height: 25px;
+    padding-left: 20px;
+    color: #0090C1;
 }

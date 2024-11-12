@@ -26,6 +26,7 @@ import Search from "./pages/Search";
 import Calendar from "./components/Calendar";
 import ContentFormNew from "./components/ContentFormNew";
 import ContentFormEdit from "./components/ContentFormEdit";
+import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/createaccount",
         element: <CreateAccount />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
       {
         path: "/login",

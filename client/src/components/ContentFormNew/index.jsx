@@ -9,11 +9,11 @@ const initialValues = {
   title: "",
   author: "",
   descr: "",
-  // genre: "",
   contentGenre: "",
+  postContent: "",
+  url: "",
   copiesHeld: "",
   copiesAvail: "",
-  // status: "",
   contentStatus: "",
   errorMessage: "",
 };
@@ -51,10 +51,9 @@ export default function ContentFormNew() {
     { value: 'Unavailable', label: 'Unavailable' },
   ]
 
-  // Toggle should be replaced by If Then for Post contentType !!!
-  const togglePostField = () => {
-    setShowPost(!showPost);
-  };
+  // const togglePostField = () => {
+  //   setShowPost(!showPost);
+  // };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,7 +71,7 @@ export default function ContentFormNew() {
       values.errorMessage('Title and Author are required.');
       return;
     }
-    // alert(`The entered Title is, ${values.title}, and the entered Author is, ${values.author}.`)
+
     alert(
       `
       Successfully saved new Content with the Title,
@@ -80,12 +79,12 @@ export default function ContentFormNew() {
       and Author, 
           ${values.author}.
       `)
-    console.log("index.jsx Line 38", values);
+    // console.log("index.jsx Line 38", values);
 
     // const { title, author, descr, genre, copiesHeld, copiesAvail, status } = values;
     const res = await fetch("/contentform", {method: "POST", body: JSON.stringify(values), headers: {"Content-Type": "application/json"}})
     const data = await res.json();
-    console.log("index.jsx Line 43", data);
+    // console.log("index.jsx Line 43", data);
 
     // Returns Data Element Values to 'initialValues' ('')
     setValues(initialValues);
@@ -117,44 +116,41 @@ export default function ContentFormNew() {
               ))}
           </select>
         </label>
+        <br/>
         <input 
+          className="textField"
           value={values.title} 
           onChange={handleInputChange}
           name="title" 
           label="Title"
-          type="text" 
+          type="textarea" 
           placeholder="Title" 
         />
         <input 
+          className="textField"
           value={values.author}
           onChange={handleInputChange}
           name="author"
           label="Author"
-          type="text"
+          type="textarea"
           placeholder="Author"
         />
         <input 
+          className="textField"
           value={values.descr}
           onChange={handleInputChange}
           name="descr"
           label="Description"
-          type="text"
+          type="textarea"
           placeholder="Description"
         />
-        {/* !!! Hidden Post Field */}
-        {/* {
-          showPost && (
-            <input type="text" placeholder="Your Post" />
-          )
-        } */}
-        {/* <input 
-          value={values.genre}
-          onChange={handleInputChange}
-          name="genre"
-          label="Genre"
-          type="text"
-          placeholder="Genre"
-        /> */}
+        { values.contentType === "Post" ? <br/> : "" }
+        { values.contentType === "Post" ? <input className="textField" value={values.postContent} onChange={handleInputChange} name="postContent" label="Post Content" type="textarea" placeholder="Your Post Content"></input> : "" }
+        {/* { values.contentType === "Post" ? <br/> : "" } */}
+        { values.contentType === "News Article" ? <br/> : "" }
+        { values.contentType === "News Article" || values.contentType === "Essay" || values.contentType === "Post" ? <input className="textField" value={values.url} onChange={handleInputChange} name="url" label="URL" type="textarea" placeholder="URL of the Online Resource"></input> : "" }
+        {/* { values.contentType === "News Article" ? <br/> : "" } */}
+        <br/>
         <label>
           {/* Genre */}
           <select
@@ -175,38 +171,30 @@ export default function ContentFormNew() {
           </select>
         </label>        
         <input 
+          className="textField"
           value={values.copiesHeld}
           onChange={handleInputChange}
           name="copiesHeld"
           label="Copies Held"
-          type="text"
+          type="textarea"
           placeholder="Copies Held"
         />
         <input 
+          className="textField"
           value={values.copiesAvail}
           onChange={handleInputChange}
           name="copiesAvail"
           label="Copies Available"
-          type="text"
+          type="textarea"
           placeholder="Copies Available"
         />
-        {/* <input 
-          value={values.status}
-          onChange={handleInputChange}
-          name="status"
-          label="Status"
-          type="text"
-          placeholder="Status"
-        /> */}
         <label>
           {/* Status */}
           <select
             className="selectField"
             value={values.contentStatus}
             onChange={handleInputChange}
-            // name="contentStatus"
             name="status"
-            // label="Content Status"
             label="status"
           >
             <option value="">
@@ -220,7 +208,7 @@ export default function ContentFormNew() {
           </select>
         </label>      
         <br/>  
-        <button type="submit">Submit</button>
+        <button type="submit">Submit Content</button>
       </form>
       {values.errorMessage && (
         <div>
