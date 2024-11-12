@@ -1,8 +1,9 @@
 // Imports required React Modules
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Defines Posts Table
-export default function DashboardTable({showPosts, posts, handleApprove, handleEdit}) {
+export default function AdminTable({showPosts, posts, handleApprove, handleEdit}) {
   return (
     <div>
       {showPosts ? (
@@ -11,11 +12,12 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
           <table>
             <thead>
               <tr>
+                <th>Content Type</th>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Content Type</th>
                 <th>Description</th>
                 <th>Genre</th>
+                <th>Resource URL</th>
                 <th>Copies Held</th>
                 <th>Copies Available</th>
                 <th>Status</th>
@@ -27,11 +29,12 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
             <tbody>
               {posts.map((item) => (
                 <tr key={item.id}>
+                  <td>{item.contentType}</td>
                   <td>{item.title}</td>
                   <td>{item.author}</td>
-                  <td>{item.contentType}</td>
                   <td>{item.descr}</td>
                   <td>{item.genre}</td>
+                  <td>{item.url}</td>
                   <td>{item.copiesHeld}</td>
                   <td>{item.copiesAvail}</td>
                   <td>{item.status}</td>
@@ -39,12 +42,14 @@ export default function DashboardTable({showPosts, posts, handleApprove, handleE
                   <td>{item.dateCreated}</td>
                   {/* FIX THIS !!! */}
                   <td>
-                    {posts.status === "Pending" && (
+                    {item.status === "Pending" && (
                       <>
                         <button onClick={() => handleApprove(item.id)}>
                           Approve
                         </button>
-                        <button onClick={() => handleEdit(item)}>Edit</button>
+                        <Link to={`/contentedit/${item._id}`}>
+                        <button onClick={() => handleEdit(item.id)}>Edit</button>
+                        </Link>
                       </>
                     )}
                   </td>

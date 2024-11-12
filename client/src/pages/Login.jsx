@@ -1,3 +1,23 @@
+// Render User Accounts
+// User Name: Sample User
+// Password: password
+
+// Local User Accounts
+// User-01
+// password-01
+
+// User-02
+// password-02
+
+// User-03
+// password-03
+
+// User-04
+// password-04
+
+// User-05
+// password-05
+
 // Imports required React Modules
 import React, { useState } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';

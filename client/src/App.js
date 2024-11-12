@@ -6,21 +6,6 @@
 // App is passed to index.js (See, root.render(), in that file)
 // React Scripts: npm run start
 
-// User-01
-// password-01
-
-// User-02
-// password-02
-
-// User-03
-// password-03
-
-// User-04
-// password-04
-
-// User-05
-// password-05
-
 // Imports required React Modules
 // Note: Outlet serves as placeholder for Child Routes allowing for nested Routes
 import React, { useEffect, useState } from "react";
@@ -88,7 +73,9 @@ export default function App() {
     <ApolloProvider client={client} className="app-container">
       <div>
         {/* <h2>HTML Rendered on all Pages (App.js)</h2> */}
-        <h2>Personal Content Management Systems (CMS)</h2>
+        <h1 style={{ color: "#0090C1" }}>
+          Personal Content Management Systems (CMS)
+        </h1>
       </div>
 
       <Nav />
@@ -107,14 +94,14 @@ export default function App() {
 
       {/* Outlet invokes front-end Routes (defined in index.js) through React-Router-Dom Library */}
       <Outlet />
-      <div>
+      {/* <div>
         <h2>GraphQL Query: All Content Data</h2>
         <ContentData />
       </div>
       <div>
         <h2>GraphQL: Available Content Data</h2>
         <ContentAvailable />
-      </div>
+      </div> */}
     </ApolloProvider>
   );
 }

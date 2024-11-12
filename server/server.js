@@ -55,7 +55,6 @@ db.once("open", () => {
   console.log("server.js Line 42: Connection established to MongoDB Instance");
 });
 
-// FIX THIS !!!
 // GET Request of MongoDB Content Data
 // Note: GET Request to Root ("/cms") rather than sub-Route ("/")
 // Referenced by Dashboard.js to populate Dashboard with MongoDB Data
@@ -71,16 +70,37 @@ app.get("/cms", async (req, res) => {
   }
 });
 
+// GET Request for specific Content Post
+// Used by 'Content Form Edit'
+app.get("/cms/:contentId", async (req, res) => {
+  const { contentId } = req.params;
+
+  try {
+    const existingContent = await Content.findById(contentId);
+    res.json(existingContent);
+  } catch (err) {
+    res.json(err);
+  }
+
+  console
+    .log
+    // "Server index.js Line 87, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
+    ();
+  // res.json(contentPost);
+});
+
 // POST Request to MongoDB Content Data
 app.post("/contentform", async (req, res) => {
   // console.log("server.js Line 90", req.body);
   // Deconstructs the Incoming New Content POST Request Body
   let {
+    contentType,
     title,
     author,
-    contentType,
     descr,
     genre,
+    postContent,
+    url,
     copiesHeld,
     copiesAvail,
     status,
@@ -88,11 +108,13 @@ app.post("/contentform", async (req, res) => {
 
   try {
     const newContent = await Content.create({
+      contentType,
       title,
       author,
-      contentType,
       descr,
       genre,
+      postContent,
+      url,
       copiesHeld,
       copiesAvail,
       status,
@@ -108,11 +130,13 @@ app.post("/contentform", async (req, res) => {
 // PUT Request to MongodDB Content Data
 app.put("/contentedit/:contentId", async (req, res) => {
   let {
+    contentType,
     title,
     author,
-    contentType,
     descr,
     genre,
+    postContent,
+    url,
     copiesHeld,
     copiesAvail,
     status,
@@ -127,6 +151,8 @@ app.put("/contentedit/:contentId", async (req, res) => {
         contentType,
         descr,
         genre,
+        postContent,
+        url,
         copiesHeld,
         copiesAvail,
         status,
@@ -141,11 +167,13 @@ app.put("/contentedit/:contentId", async (req, res) => {
 // DELETE Request to MongodDB Content Data
 app.delete("/contentedit/:contentId", async (req, res) => {
   let {
+    contentType,
     title,
     author,
-    contentType,
     descr,
     genre,
+    postContent,
+    url,
     copiesHeld,
     copiesAvail,
     status,
@@ -155,11 +183,13 @@ app.delete("/contentedit/:contentId", async (req, res) => {
     const deletedContent = await Content.findByIdAndDelete(
       req.params.contentId,
       {
+        contentType,
         title,
         author,
-        contentType,
         descr,
         genre,
+        postContent,
+        url,
         copiesHeld,
         copiesAvail,
         status,
@@ -172,24 +202,6 @@ app.delete("/contentedit/:contentId", async (req, res) => {
     res.json(err);
   }
 });
-
-// COMMENTED OUT SAT 9 NOV !!!
-// DONT THINK THIS IS NEEDED !!!
-// app.get("/cms/:contentId", async (req, res) => {
-//   const { contentId } = req.params;
-
-//   try {
-//     const existingContent = await Content.findById(contentId);
-//     res.json(existingContent);
-//   } catch (err) {
-//     res.json(err);
-//   }
-
-//   console.log(
-//     "Server index.js Line 176, CMS Post (http://localhost:3000/cms/:id) Route Sucessfully Returned"
-//   );
-//   // res.json(contentPost);
-// });
 
 // Defines Apollo Server to respond to GraphQL Queries
 const server = new ApolloServer({
@@ -210,6 +222,7 @@ const startApolloServer = async () => {
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.get("*", (req, res) => {
+    // app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
 };

@@ -7,6 +7,8 @@ const typeDefs = `
         author: String
         descr: String
         genre: String
+        postContent: String
+        url: String
         copiesHeld: Int
         copiesAvail: Int
         status: String

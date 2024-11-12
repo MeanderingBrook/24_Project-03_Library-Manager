@@ -1,11 +1,13 @@
 // Imports required React Modules
 import React, { useState, useEffect } from 'react';
+import useNavigate from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // Imports Dashboard Components to be rendered
 import DashboardPosts from '../components/Dashboard/DashboardPosts';
 import DashboardControl from '../components/Dashboard/DashboardControl';
-import DashboardTable from '../components/Dashboard/DashboardTable';
+import AdminTable from '../components/Admin/AdminTable';
 
 // Defines Dashboard functionality (e.g., Button Functions) and Structure
 export default function Dashboard() {
@@ -68,10 +70,9 @@ export default function Dashboard() {
     <div className="app-container">
       {/* <h2>Content Management System</h2> */}
       <DashboardControl handleDashboardClick={handleDashboardClick} handlePostsClick={handlePostsClick} />
-      <DashboardTable showPosts={showPosts} posts={posts} handleApprove={handleApprove} handleEdit={handleEdit} />
+      {/* <DashboardTable showPosts={showPosts} posts={posts} handleApprove={handleApprove} handleEdit={handleEdit} /> */}
       <DashboardPosts posts={posts} />
       {/* <DashboardPosts showPosts={showPosts} posts={posts} /> */}
-    </div>
-    
+    </div>    
   );
 }

@@ -39,6 +39,7 @@ export default function AuthorForm() {
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
+      {/* LINK TO CONTENT USING ID !!! */}
       {data?.getByAuthor.map((getByAuthor) => (
         <li key={getByAuthor.id}>
         {getByAuthor.title} - {getByAuthor.author} - {getByAuthor.descr}{" "}
