@@ -12,7 +12,6 @@ export default function DashboardPosts({posts}) {
         ? null
         : posts.map((item) => (
             <div className="posts" key={item.id}>
-              {/* FIX THIS !!! LINK SCROLLS FURTHER DOWN PAGE !!! */}
               <h2>
                 <Link to={`/contentedit/${item._id}`}>Title: {item.title}</Link>
               </h2>
@@ -20,10 +19,16 @@ export default function DashboardPosts({posts}) {
               <p>Content Type: {item.contentType}</p>
               <p>Description: {item.descr}</p>
               <p>Genre: {item.genre}</p>
-              {/* CONDITIONAL APPEARANCE !!! */}
-              <p>Post Content: {item.postContent}</p>
-              {/* CONDITIONAL APPEARANCE !!! */}
-              <p>Resource URL: {item.url}</p>
+
+              { item.contentType === 'Post' ? (
+                <p>Post Content: {item.postContent}</p>
+               ) : '' }
+
+              { item.contentType !== 'Book' ? (
+                <p>Resource URL: {item.url}</p>
+               ) : '' }
+
+              {/* <p>Resource URL: {item.url}</p> */}
               <p>Copies Held: {item.copiesHeld}</p>
               <p>Copies Available: {item.copiesAvail}</p>
               <p>Status: {item.status}</p>  

@@ -1,6 +1,7 @@
 // Imports required React Modules
 import React, { useState } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 // Imports required App Modules
 import { GET_STATUS } from '../../queries';
@@ -33,17 +34,23 @@ export default function StatusForm() {
           onChange={(e) => setContentStatus(e.target.value)} 
         />
         <button type='submit'>Get Content by Status</button>
-        <button onClick={clearSearchResults}>Clear Search</button>
+        <br />
+        <button onClick={clearSearchResults}>Clear Search Results</button>
       </form>
       <br />
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data?.getByStatus.map((getByStatus) => (
-        <li key={getByStatus.id}>
-        {getByStatus.title} - {getByStatus.author} - {getByStatus.descr}{" "}
-        - {getByStatus.genre}
-        </li>
+        <div key={getByStatus._id}>
+          <Link to={`/contentedit/${getByStatus._id}`}>Title: {getByStatus.title}</Link>
+          {/* <li key={getByStatus.id}> */}
+          <li>
+            {getByStatus.author} - {getByStatus.descr}{" "}
+            - {getByStatus.genre}
+          </li>
+          <br />
+        </div>
       ))}
     </div>
   );

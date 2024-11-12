@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const GET_ALL_CONTENT = gql`
   query {
     getAllContent {
+      _id
       title
       author
       contentType
@@ -16,6 +17,7 @@ export const GET_ALL_CONTENT = gql`
 export const GET_AVAILABLE = gql`
   query {
     getAvailable {
+      _id
       title
       author
       contentType
@@ -28,6 +30,7 @@ export const GET_AVAILABLE = gql`
 export const GET_STATUS = gql`
   query getByStatus($contentStatus: String!) {
     getByStatus(contentStatus: $contentStatus) {
+      _id
       title
       author
       contentType
@@ -41,6 +44,7 @@ export const GET_STATUS = gql`
 export const GET_GENRE = gql`
   query getByGenre($contentGenre: String!) {
     getByGenre(contentGenre: $contentGenre) {
+      _id
       title
       author
       contentType
@@ -54,6 +58,7 @@ export const GET_GENRE = gql`
 export const GET_TITLE = gql`
   query getByTitle($contentTitle: String!) {
     getByTitle(contentTitle: $contentTitle) {
+      _id
       title
       author
       contentType
@@ -67,6 +72,7 @@ export const GET_TITLE = gql`
 export const GET_AUTHOR = gql`
   query getByAuthor($contentAuthor: String!) {
     getByAuthor(contentAuthor: $contentAuthor) {
+      _id
       title
       author
       contentType

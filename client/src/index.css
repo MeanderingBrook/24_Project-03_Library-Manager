@@ -108,6 +108,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  list-style-type: none;
+}
+
 .posts {
     margin-bottom: 1%;
     margin-left: 10%;

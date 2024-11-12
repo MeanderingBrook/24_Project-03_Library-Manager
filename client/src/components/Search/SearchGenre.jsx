@@ -1,6 +1,7 @@
 // Imports required React Modules
 import React, { useState } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 // Imports required App Modules
 import { GET_GENRE } from '../../queries';
@@ -33,17 +34,23 @@ export default function GenreForm() {
           onChange={(e) => setContentGenre(e.target.value)} 
         />
         <button type='submit'>Get Content by Genre</button>
-        <button onClick={clearSearchResults}>Clear Search</button>
+        <br />
+        <button onClick={clearSearchResults}>Clear Search Results</button>
       </form>
       <br />
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data?.getByGenre.map((getByGenre) => (
-        <li key={getByGenre.id}>
-        {getByGenre.title} - {getByGenre.author} - {getByGenre.descr}{" "}
-        - {getByGenre.genre}
-        </li>
+        <div key={getByGenre._id}>
+          <Link to={`/contentedit/${getByGenre._id}`}>Title: {getByGenre.title}</Link>
+          {/* <li key={getByGenre.id}> */}
+          <li>
+            {getByGenre.author} - {getByGenre.descr}{" "}
+            - {getByGenre.genre}
+          </li>
+          <br />
+        </div>
       ))}
     </div>
   );

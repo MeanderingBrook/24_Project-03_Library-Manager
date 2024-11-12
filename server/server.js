@@ -195,7 +195,6 @@ app.delete("/contentedit/:contentId", async (req, res) => {
         status,
       }
     );
-    // IS THIS REQUIRED ??? !!! SEEMED TO BE BASED ON ERROR
     const data = await res.json();
     return data;
   } catch (err) {

@@ -1,6 +1,7 @@
 // Imports required React Modules
 import React, { useState } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 // Imports required App Modules
 import { GET_TITLE } from '../../queries';
@@ -33,17 +34,23 @@ export default function TitleForm() {
           onChange={(e) => setcontentTitle(e.target.value)} 
         />
         <button type='submit'>Get Content by Title</button>
-        <button onClick={clearSearchResults}>Clear Search</button>
+        <br />
+        <button onClick={clearSearchResults}>Clear Search Results</button>
       </form>
       <br />
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
       {data?.getByTitle.map((getByTitle) => (
-        <li key={getByTitle.id}>
-        {getByTitle.title} - {getByTitle.author} - {getByTitle.descr}{" "}
-        - {getByTitle.genre}
-        </li>
+        <div key={getByTitle._id}>
+          <Link to={`/contentedit/${getByTitle._id}`}>Title: {getByTitle.title}</Link>
+          {/* <li key={getByTitle.id}> */}
+          <li>
+          {getByTitle.author} - {getByTitle.descr}{" "}
+          - {getByTitle.genre}
+          </li>
+          <br />
+        </div>
       ))}
     </div>
   );

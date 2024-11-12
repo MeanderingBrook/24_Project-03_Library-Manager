@@ -92,10 +92,17 @@ export default function ContentFormNew() {
 
   return (
     <div className="newForm">
-      {/* HIDE HEADER UNTIL CONTENT IS POPULATED !!! */}
-      <h1>
+      { values.title.length < 5 ? (
+                ""
+               ) : <h2 style={{ color: '#3D5A80' }}>Your Content Title is,<span style={{ color: '#38AECC' }}> {values.title}</span></h2> }
+
+      { values.author.length < 5 ? (
+                ""
+               ) : <h2 style={{ color: '#3D5A80' }}>by the Author,<span style={{ color: '#38AECC' }}> {values.author}</span></h2> }
+
+      {/* <h1>
         Your content Title is,<span style={{ color: 'blue' }}> {values.title}</span>, by the Author,<span style={{ color: 'blue' }}> {values.author}</span>.
-      </h1>
+      </h1> */}
       <form className="form" onSubmit={handleFormSubmit}>
         <label>
           {/* Content Type */}
@@ -145,11 +152,27 @@ export default function ContentFormNew() {
           placeholder="Description"
         />
         { values.contentType === "Post" ? <br/> : "" }
-        { values.contentType === "Post" ? <input className="textField" value={values.postContent} onChange={handleInputChange} name="postContent" label="Post Content" type="textarea" placeholder="Your Post Content"></input> : "" }
-        {/* { values.contentType === "Post" ? <br/> : "" } */}
+        { values.contentType === "Post" ? 
+          <input 
+            className="textField" 
+            value={values.postContent} 
+            onChange={handleInputChange} 
+            name="postContent" 
+            label="Post Content" 
+            type="textarea" 
+            placeholder="Your Post Content"
+          ></input> : "" }
         { values.contentType === "News Article" ? <br/> : "" }
-        { values.contentType === "News Article" || values.contentType === "Essay" || values.contentType === "Post" ? <input className="textField" value={values.url} onChange={handleInputChange} name="url" label="URL" type="textarea" placeholder="URL of the Online Resource"></input> : "" }
-        {/* { values.contentType === "News Article" ? <br/> : "" } */}
+
+        { values.contentType === "News Article" || values.contentType === "Essay" || values.contentType === "Post" ? 
+          <input 
+            className="textField" 
+            value={values.url} 
+            onChange={handleInputChange} 
+            name="url" label="URL" 
+            type="textarea" 
+            placeholder="URL of the Online Resource"></input> : "" }
+
         <br/>
         <label>
           {/* Genre */}

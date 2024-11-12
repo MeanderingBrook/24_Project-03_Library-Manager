@@ -12,7 +12,7 @@ export default function Nav() {
     { to: 'calendar', label: 'Calendar' },
     { to: 'search', label: 'Search' },
     { to: 'admin', label: 'Admin' },
-    { to: 'login', label: 'Login' },
+    // { to: 'login', label: 'Login' },
     { to: 'createaccount', label: 'Create Account' },
   ];
 
