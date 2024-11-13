@@ -125,14 +125,14 @@ https://two4-project-03-library-manager.onrender.com
 
 ## Application Screenshots
 
-![Library Manager: React App Homepage - Screenshot 01](./assets/images/Note-Taker_Nodejs-App_Screenshot-01_Homepage.png?raw=true "Note Taker: Node.js App Homepage")
+![Library Manager: React App Homepage - Screenshot 01](./client/public/assets/images/Library-Manager_React-App_Screenshot-01_Homepage.png?raw=true "Library Manager: React App Homepage")
 
-![Library Manager: React App Content Record Creation - Screenshot 02](./assets/images/Note-Taker_Nodejs-App_Screenshot-02_Note-Creation.png?raw=true "Note Taker: Node.js App Note Creation")
+![Library Manager: React App Content Record Creation - Screenshot 02](./client/public/assets/images/Library-Manager_React-App_Screenshot-02_Content-Record-Creation.png?raw=true "Library Manager: React App Content Record Creation")
 
-![Library Manager: React App Content Record Edit - Screenshot 03](./assets/images/Note-Taker_Nodejs-App_Screenshot-03_Category-Mgt.png?raw=true "Note Taker: Node.js Category Management")
+![Library Manager: React App Content Record Edit - Screenshot 03](./client/public/assets/images/Library-Manager_React-App_Screenshot-03_Content-Record-Edit.png?raw=true "Library Manager: React App Content Record Edit")
 
-![Library Manager: React App Content Record Search - Screenshot 04](./assets/images/Note-Taker_Nodejs-App_Screenshot-03_Category-Mgt.png?raw=true "Note Taker: Node.js Category Management")
+![Library Manager: React App Content Record Search - Screenshot 04](./client/public/assets/images/Library-Manager_React-App_Screenshot-04_Content-Record-Search.png?raw=true "Library Manager: React App Content Record Search")
 
-![Library Manager: React App User Registration - Screenshot 05](./assets/images/Note-Taker_Nodejs-App_Screenshot-04_Note-Mgt.png?raw=true "Note Taker: Node.js App Note Management")
+![Library Manager: React App User Registration - Screenshot 05](./client/public/assets/images/Library-Manager_React-App_Screenshot-05_User-Registration.png?raw=true "Library Manager: React App User Registration")
 
-![Library Manager: React App User Login - Screenshot 06](./assets/images/Note-Taker_Nodejs-App_Screenshot-05_User-Registration.png?raw-true "Note Taker: Node.js App User Registration")
+![Library Manager: React App User Login - Screenshot 06](./client/public/assets/images/Library-Manager_React-App_Screenshot-06_User-Login.png?raw-true "Library Manager: React App User Login")

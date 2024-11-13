@@ -23,7 +23,7 @@ export default function AdminTable({showPosts, posts, handleApprove, handleEdit}
                 <th>Status</th>
                 {/* <th>Allow Comments</th> */}
                 <th>Date Created</th>
-                <th>Buttons</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@ export default function AdminTable({showPosts, posts, handleApprove, handleEdit}
                   <td>{item.dateCreated}</td>
                   {/* FIX THIS !!! */}
                   <td>
-                    {item.status === "Pending" && (
+                    {/* {item.status === "Pending" && (
                       <>
                         <button onClick={() => handleApprove(item.id)}>
                           Approve
@@ -51,7 +51,10 @@ export default function AdminTable({showPosts, posts, handleApprove, handleEdit}
                         <button onClick={() => handleEdit(item.id)}>Edit</button>
                         </Link>
                       </>
-                    )}
+                    )} */}
+                    <Link to={`/contentedit/${item._id}`}>
+                      <button onClick={() => handleEdit(item.id)}>Edit</button>
+                    </Link>
                   </td>
                 </tr>
               ))}

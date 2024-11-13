@@ -78,14 +78,16 @@ export default function Login() {
  
       <form onSubmit={handleSubmit}>
         <input
+          className="textField"
           value={userName}
-          type='text'
+          type='textarea'
           placeholder='User Name'
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
         
         <input
+          className="textField"
           value={password}
           type='password'
           placeholder='User Password'
@@ -94,7 +96,7 @@ export default function Login() {
         <br />
 
         <button type='submit'>Login</button>
-        <button onClick={AuthService.logout}>Log Out</button>
+        {/* <button onClick={AuthService.logout}>Log Out</button> */}
       </form>
     </div>
   )

@@ -50,14 +50,16 @@ export default function CreateAccount() {
 
       <form onSubmit={handleSubmit}>
         <input
+          className="textField"
           value={userName}
-          type='text'
+          type='textarea'
           placeholder='User Name'
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
         
         <input
+          className="textField"
           value={password}
           type='password'
           placeholder='User Password'

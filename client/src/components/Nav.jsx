@@ -9,10 +9,10 @@ export default function Nav() {
   const links = [
     { to: '/', label: 'Home' },
     { to: 'contentform', label: 'New Content Form' },
-    { to: 'calendar', label: 'Calendar' },
     { to: 'search', label: 'Search' },
     { to: 'admin', label: 'Admin' },
     // { to: 'login', label: 'Login' },
+    { to: 'calendar', label: 'Calendar' },
     { to: 'createaccount', label: 'Create Account' },
   ];
 
